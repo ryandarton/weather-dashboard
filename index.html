@@ -17,6 +17,21 @@
     <header>
       <h1>Weather Dashboard</h1>
     </header>
+    <aside class="sidebar">
+    <section class="search"></section>
+        <h2>Search for a city:</h2>
+        <form id="search-form">
+            <input type="text" id="search-input" placeholder="San Diego" />
+            <button type="submit" id="search-button">Search</button>
+        </form>
+    </section>
+    <hr>
+    <section class="history">
+        <ul id="history-list"></ul>
+        <li class="history-item no-bullet"><button class="secondary">San Diego</button></li>
+    </section>
+    </aside>
+
     <script src="scripts/script.js"></script>
   </body>
 </html>

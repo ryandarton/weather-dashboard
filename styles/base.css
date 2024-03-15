@@ -5,6 +5,7 @@
   --secondary-color: #261460;
   --tertiary-color: white;
   --font-family: 'Roboto', sans-serif;
+  --border-radius: 8px;
 }
 
 h1,
@@ -42,14 +43,44 @@ h1 {
   right: 10vw;
 }
 
+h2 {
+  font-size: 2rem;
+  color: var(--primary-color);
+  position: relative;
+  margin: 0.5rem 0;
+}
+
 button {
   background-color: var(--primary-button-color);
+  color: var(--tertiary-color);
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  border: none;
 }
 
 button.secondary {
   background-color: var(--secondary-button-color);
+  color: var(--primary-color);
 }
 
 body {
   color: var(--primary-color);
+}
+
+.sidebar {
+  width: 25vw;
+  padding: 0.5rem;
+}
+
+input[type='text'] {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border-radius: var(--border-radius);
+}
+
+.no-bullet {
+  list-style: none;
 }
