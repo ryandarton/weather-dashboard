@@ -1,0 +1,55 @@
+:root {
+  --primary-button-color: #6991e3;
+  --secondary-button-color: #aeaeae;
+  --primary-color: #323e4f;
+  --secondary-color: #261460;
+  --tertiary-color: white;
+  --font-family: 'Roboto', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+ul,
+ol,
+li,
+input,
+select,
+option,
+optgroup,
+textarea,
+button,
+pre,
+code {
+  font-family: var(--font-family);
+}
+
+header {
+  background: linear-gradient(to right, var(--primary-button-color), var(--secondary-color));
+  padding: 1rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: var(--tertiary-color);
+  text-align: right;
+  position: relative;
+  right: 10vw;
+}
+
+button {
+  background-color: var(--primary-button-color);
+}
+
+button.secondary {
+  background-color: var(--secondary-button-color);
+}
+
+body {
+  color: var(--primary-color);
+}
