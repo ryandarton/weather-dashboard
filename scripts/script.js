@@ -1,6 +1,7 @@
 const APIKey = '74760e6759bf8ce85d049eef88abed35';
-const url = 'https://api.openweathermap.org/data/2.5/weather?q=';
+const weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=';
 const iconUrl = 'http://openweathermap.org/img/w/';
+const forecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?';
 
 function displayWeatherData(data) {
   const currentDate = new Date();
@@ -20,7 +21,7 @@ function displayWeatherData(data) {
 }
 
 function fetchWeatherData(city) {
-  fetch(`${url}${city}&appid=${APIKey}`)
+  fetch(`${weatherUrl}${city}&appid=${APIKey}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error('Invalid city.');
@@ -28,7 +29,7 @@ function fetchWeatherData(city) {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       displayWeatherData(data);
       // Store the city in local storage if it doesn't already exist
       const cityEntries = JSON.parse(localStorage.getItem('cityEntries')) || [];
@@ -46,6 +47,10 @@ function fetchWeatherData(city) {
         li.appendChild(button);
         historyList.appendChild(li);
       }
+      // Fetch forecast data using lat and lon
+      const lat = data.coord.lat;
+      const lon = data.coord.lon;
+      fetchForecastData(lat, lon);
     })
     .catch((error) => {
       console.error(error);
@@ -54,6 +59,99 @@ function fetchWeatherData(city) {
       document.getElementById('spinner').classList.add('no-display');
     });
 }
+
+function fetchForecastData(lat, lon) {
+  fetch(`${forecastUrl}lat=${lat}&lon=${lon}&appid=${APIKey}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch forecast data.');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+      // gather all of the dt values from the forecast data
+      const dtValues = [];
+      for (let i = 0; i < data.list.length; i += 8) {
+        dtValues.push(data.list[i].dt);
+      }
+      // convert the dt values to dates
+      const dates = dtValues.map((dt) => {
+        const date = new Date(dt * 1000);
+        return date;
+      });
+      // format the dates to MM/DD/YY
+      const formattedDates = dates.map((date) => {
+        return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear().toString().slice(-2)}`;
+      });
+      // gather all of the weather icons from the forecast data
+      const icons = [];
+      for (let i = 0; i < data.list.length; i += 8) {
+        icons.push(data.list[i].weather[0].icon);
+      }
+      // gather all of the temperatures from the forecast data
+      const temps = [];
+      for (let i = 0; i < data.list.length; i += 8) {
+        temps.push((((data.list[i].main.temp - 273.15) * 9) / 5 + 32).toFixed(2));
+      }
+      // gather all of the wind speeds from the forecast data
+      const windSpeeds = [];
+      for (let i = 0; i < data.list.length; i += 8) {
+        windSpeeds.push((data.list[i].wind.speed * 2.23694).toFixed(2));
+      }
+      // gather all of the humidity values from the forecast data
+      const humidities = [];
+      for (let i = 0; i < data.list.length; i += 8) {
+        humidities.push(data.list[i].main.humidity);
+      }
+      // display the forecast data
+      displayForecastData(formattedDates, icons, temps, windSpeeds, humidities);
+    });
+}
+
+displayForecastData = (dates, icons, temps, windSpeeds, humidities) => {
+  const forecastWrapper = document.querySelector('.forecast-wrapper');
+  forecastWrapper.innerHTML = ''; // Clear existing forecast cards
+
+  for (let i = 0; i < 5; i++) {
+    const forecastCard = document.createElement('div');
+    forecastCard.classList.add('forecast-card');
+
+    const date = document.createElement('h3');
+    date.classList.add('forecast-info-date');
+    date.id = `forecast-info-date-${i}`;
+    date.innerHTML = dates[i];
+    forecastCard.appendChild(date);
+
+    const icon = document.createElement('p');
+    icon.classList.add('forecast-info');
+    const iconImg = document.createElement('img');
+    iconImg.id = `forecast-info-icon-${i}`;
+    iconImg.src = `${iconUrl}${icons[i]}.png`;
+    icon.appendChild(iconImg);
+    forecastCard.appendChild(icon);
+
+    const temp = document.createElement('p');
+    temp.classList.add('forecast-info');
+    temp.id = `forecast-info-temp-${i}`;
+    temp.innerHTML = `Temp: ${temps[i]}°F`;
+    forecastCard.appendChild(temp);
+
+    const wind = document.createElement('p');
+    wind.classList.add('forecast-info');
+    wind.id = `forecast-info-wind-${i}`;
+    wind.innerHTML = `Wind: ${windSpeeds[i]} MPH`;
+    forecastCard.appendChild(wind);
+
+    const humidity = document.createElement('p');
+    humidity.classList.add('forecast-info');
+    humidity.id = `forecast-info-humidity-${i}`;
+    humidity.innerHTML = `Humidity: ${humidities[i]}%`;
+    forecastCard.appendChild(humidity);
+
+    forecastWrapper.appendChild(forecastCard);
+  }
+};
 
 document.getElementById('search-form').addEventListener('submit', function (event) {
   event.preventDefault();
