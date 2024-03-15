@@ -62,6 +62,7 @@ document.getElementById('search-form').addEventListener('submit', function (even
   document.getElementById('spinner').classList.remove('no-display');
   const city = document.getElementById('search-input').value;
   fetchWeatherData(city);
+  document.getElementById('search-input').value = ''; // Clear the form input
 });
 
 document.getElementById('history-list').addEventListener('click', function (event) {
