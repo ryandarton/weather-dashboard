@@ -50,6 +50,11 @@ h2 {
   margin: 0.5rem 0;
 }
 
+h3 {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+}
+
 button {
   background-color: var(--primary-button-color);
   color: var(--tertiary-color);
@@ -108,4 +113,30 @@ main {
 
 .current-weather-info {
   padding: 0.5rem;
+}
+
+.forecast {
+  margin: 1rem 0;
+}
+
+.forecast-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+
+.forecast-card {
+  background-color: var(--primary-color);
+  color: var(--tertiary-color);
+  padding: 0.5rem;
+  width: 10rem;
+}
+
+.forecast-card h3 {
+  color: var(--tertiary-color);
+  margin: 0.5rem 0;
+}
+
+.forecast-info {
+  padding: 1rem 0;
 }
