@@ -44,13 +44,9 @@ document.getElementById('search-form').addEventListener('submit', function (even
       document.getElementById('main').classList.add('display');
       document.getElementById('spinner').classList.remove('display');
       document.getElementById('spinner').classList.add('no-display');
-      // Store the city in local storage with a unique identifier
-      const cityEntry = {
-        id: Date.now(), // Unique identifier based on current timestamp
-        city: city,
-      };
+      // Store the city in local storage
       const cityEntries = JSON.parse(localStorage.getItem('cityEntries')) || [];
-      cityEntries.push(cityEntry);
+      cityEntries.push(city);
       localStorage.setItem('cityEntries', JSON.stringify(cityEntries));
       // Add an <li> element for the city in the history list
       const historyList = document.getElementById('history-list');
@@ -100,13 +96,9 @@ document.getElementById('history-list').addEventListener('click', function (even
         document.getElementById('main').classList.add('display');
         document.getElementById('spinner').classList.remove('display');
         document.getElementById('spinner').classList.add('no-display');
-        // Store the city in local storage with a unique identifier
-        const cityEntry = {
-          id: Date.now(), // Unique identifier based on current timestamp
-          city: city,
-        };
+        // Store the city in local storage
         const cityEntries = JSON.parse(localStorage.getItem('cityEntries')) || [];
-        cityEntries.push(cityEntry);
+        cityEntries.push(city);
         localStorage.setItem('cityEntries', JSON.stringify(cityEntries));
         // Add an <li> element for the city in the history list
         const historyList = document.getElementById('history-list');
