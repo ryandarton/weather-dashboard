@@ -2,6 +2,19 @@ const APIKey = '74760e6759bf8ce85d049eef88abed35';
 const url = 'https://api.openweathermap.org/data/2.5/weather?q=';
 const iconUrl = 'http://openweathermap.org/img/w/';
 
+// Load all of the last searched cities from local storage
+const cityEntries = JSON.parse(localStorage.getItem('cityEntries')) || [];
+const historyList = document.getElementById('history-list');
+cityEntries.forEach((cityEntry) => {
+  const li = document.createElement('li');
+  li.classList.add('history-item', 'no-bullet');
+  const button = document.createElement('button');
+  button.classList.add('secondary');
+  button.textContent = cityEntry.city;
+  li.appendChild(button);
+  historyList.appendChild(li);
+});
+
 document.getElementById('search-form').addEventListener('submit', function (event) {
   event.preventDefault();
   document.getElementById('main').classList.remove('display');
@@ -31,6 +44,23 @@ document.getElementById('search-form').addEventListener('submit', function (even
       document.getElementById('main').classList.add('display');
       document.getElementById('spinner').classList.remove('display');
       document.getElementById('spinner').classList.add('no-display');
+      // Store the city in local storage with a unique identifier
+      const cityEntry = {
+        id: Date.now(), // Unique identifier based on current timestamp
+        city: city,
+      };
+      const cityEntries = JSON.parse(localStorage.getItem('cityEntries')) || [];
+      cityEntries.push(cityEntry);
+      localStorage.setItem('cityEntries', JSON.stringify(cityEntries));
+      // Add an <li> element for the city in the history list
+      const historyList = document.getElementById('history-list');
+      const li = document.createElement('li');
+      li.classList.add('history-item', 'no-bullet');
+      const button = document.createElement('button');
+      button.classList.add('secondary');
+      button.textContent = city;
+      li.appendChild(button);
+      historyList.appendChild(li);
     })
     .catch((error) => {
       console.error(error);
