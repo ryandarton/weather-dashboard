@@ -69,11 +69,6 @@ body {
   color: var(--primary-color);
 }
 
-.sidebar {
-  width: 25vw;
-  padding: 0.5rem;
-}
-
 input[type='text'] {
   width: 100%;
   padding: 0.8rem;
@@ -83,4 +78,34 @@ input[type='text'] {
 
 .no-bullet {
   list-style: none;
+}
+
+.body-wrapper {
+  display: flex;
+}
+
+.sidebar {
+  width: 25vw;
+  padding: 0.5rem;
+}
+
+main {
+  flex: 1;
+  padding: 0.5rem;
+}
+
+.current-weather {
+  border: var(--primary-color) 1px solid;
+}
+
+.current-weather h2 {
+  margin: 0.5rem;
+}
+
+.current-weather-info-wrapper {
+  padding: 1rem 0;
+}
+
+.current-weather-info {
+  padding: 0.5rem;
 }

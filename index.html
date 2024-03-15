@@ -17,21 +17,38 @@
     <header>
       <h1>Weather Dashboard</h1>
     </header>
-    <aside class="sidebar">
-    <section class="search"></section>
-        <h2>Search for a city:</h2>
-        <form id="search-form">
+    <article class="body-wrapper">
+      <aside class="sidebar">
+        <section class="search">
+          <h2>Search for a city:</h2>
+          <form id="search-form">
             <input type="text" id="search-input" placeholder="San Diego" />
             <button type="submit" id="search-button">Search</button>
-        </form>
-    </section>
-    <hr>
-    <section class="history">
-        <ul id="history-list"></ul>
-        <li class="history-item no-bullet"><button class="secondary">San Diego</button></li>
-    </section>
-    </aside>
+          </form>
+        </section>
+        <hr />
+        <section class="history">
+          <ul id="history-list"></ul>
+          <li class="history-item no-bullet"><button class="secondary">San Diego</button></li>
+        </section>
+      </aside>
 
+      <main>
+        <section class="current-weather">
+          <h2>
+            <span class="city"></span>Atlanta<span> </span><span class="date">03/15/2024</span><span> </span><span class="symbol">☀️</span>
+          </h2>
+          <div class="current-weather-info-wrapper">
+            <div class="current-weather-info"><span>Temp: </span><span id="current-temp">79.25℉</span></div>
+            <div class="current-weather-info"><span>Wind: </span>8.43 MPH<span id="current-wind">Sunny</span></div>
+            <div class="current-weather-info"><span>Humidity: </span><span id="current-humidity">44%</span></div>
+          </div>
+        </section>
+        <section class="forecast">
+          <h2>5-Day Forecast:</h2>
+        </section>
+      </main>
+    </article>
     <script src="scripts/script.js"></script>
   </body>
 </html>
