@@ -10,7 +10,12 @@ document.getElementById('search-form').addEventListener('submit', function (even
   const formattedDate = `${currentDate.getMonth() + 1}/${currentDate.getDate()}/${currentDate.getFullYear().toString().slice(-2)}`;
   const city = document.getElementById('search-input').value;
   fetch(`${url}${city}&appid=${APIKey}`)
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Invalid city.');
+      }
+      return response.json();
+    })
     .then((data) => {
       console.log(data);
       const temp = (((data.main.temp - 273.15) * 9) / 5 + 32).toFixed(2);
@@ -24,5 +29,8 @@ document.getElementById('search-form').addEventListener('submit', function (even
       document.getElementById('main').classList.remove('no-display');
       document.getElementById('main').classList.add('display');
     })
-    .catch((error) => console.error(error));
+    .catch((error) => {
+      console.error(error);
+      alert('Invalid city. Please try again.');
+    });
 });
