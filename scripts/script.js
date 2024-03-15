@@ -6,6 +6,7 @@ document.getElementById('search-form').addEventListener('submit', function (even
   event.preventDefault();
   document.getElementById('main').classList.remove('display');
   document.getElementById('main').classList.add('no-display');
+  document.getElementById('spinner').classList.remove('no-display');
   const currentDate = new Date();
   const formattedDate = `${currentDate.getMonth() + 1}/${currentDate.getDate()}/${currentDate.getFullYear().toString().slice(-2)}`;
   const city = document.getElementById('search-input').value;
@@ -28,9 +29,13 @@ document.getElementById('search-form').addEventListener('submit', function (even
       document.getElementById('current-humidity').innerHTML = `Humidity: ${data.main.humidity}%`;
       document.getElementById('main').classList.remove('no-display');
       document.getElementById('main').classList.add('display');
+      document.getElementById('spinner').classList.remove('display');
+      document.getElementById('spinner').classList.add('no-display');
     })
     .catch((error) => {
       console.error(error);
       alert('Invalid city. Please try again.');
+      document.getElementById('spinner').classList.remove('display');
+      document.getElementById('spinner').classList.add('no-display');
     });
 });
