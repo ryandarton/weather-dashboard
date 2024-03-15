@@ -4,9 +4,52 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/base.css" />
   </head>
   <body>
+    <header>
+      <h1>Weather Dashboard</h1>
+    </header>
+    <article class="body-wrapper">
+      <div id="spinner" class="spinner no-display"></div>
+      <aside class="sidebar">
+        <section class="search">
+          <h2>Search for a city:</h2>
+          <form id="search-form">
+            <input type="text" id="search-input" placeholder="San Diego" />
+            <button type="submit" id="search-button">Search</button>
+          </form>
+        </section>
+        <hr />
+        <section class="history">
+          <ul id="history-list"></ul>
+        </section>
+      </aside>
+
+      <main id="main" class="no-display">
+        <section class="current-weather">
+          <h2><span id="current-city" class="city"></span><span id="current-date" class="date"></span><img id="current-icon" src="" /></h2>
+          <div class="current-weather-info-wrapper">
+            <div class="current-weather-info"><span id="current-temp"></span></div>
+            <div class="current-weather-info"><span id="current-wind"></span></div>
+            <div class="current-weather-info"><span id="current-humidity"></span></div>
+          </div>
+        </section>
+        <section class="forecast">
+          <h3>5-Day Forecast:</h3>
+          <div class="forecast-wrapper">
+            <div class="forecast-card"></div>
+          </div>
+        </section>
+      </main>
+    </article>
     <script src="scripts/script.js"></script>
   </body>
 </html>
