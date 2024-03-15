@@ -4,6 +4,8 @@ const iconUrl = 'http://openweathermap.org/img/w/';
 
 document.getElementById('search-form').addEventListener('submit', function (event) {
   event.preventDefault();
+  document.getElementById('main').classList.remove('display');
+  document.getElementById('main').classList.add('no-display');
   const currentDate = new Date();
   const formattedDate = `${currentDate.getMonth() + 1}/${currentDate.getDate()}/${currentDate.getFullYear().toString().slice(-2)}`;
   const city = document.getElementById('search-input').value;
