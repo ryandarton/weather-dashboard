@@ -104,11 +104,17 @@ main {
 }
 
 .current-weather h2 {
-  margin: 0.5rem;
+  margin-left: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.current-weather span {
+  margin: 0 0.5rem;
 }
 
 .current-weather-info-wrapper {
-  padding: 1rem 0;
+  padding: 0 0 1rem 0;
 }
 
 .current-weather-info {
@@ -139,4 +145,16 @@ main {
 
 .forecast-info {
   padding: 1rem 0;
+}
+
+#current-icon {
+  margin: 0.5rem 0;
+}
+
+.no-display {
+  display: none;
+}
+
+.display {
+  display: initial;
 }

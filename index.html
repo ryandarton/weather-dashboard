@@ -33,15 +33,13 @@
         </section>
       </aside>
 
-      <main>
+      <main id="main" class="no-display">
         <section class="current-weather">
-          <h2>
-            <span class="city"></span>Atlanta<span> </span><span class="date">03/15/2024</span><span> </span><span class="symbol">☀️</span>
-          </h2>
+          <h2><span id="current-city" class="city"></span><span id="current-date" class="date"></span><img id="current-icon" src=""></img></h2>
           <div class="current-weather-info-wrapper">
-            <div class="current-weather-info"><span>Temp: </span><span id="current-temp">79.25℉</span></div>
-            <div class="current-weather-info"><span>Wind: </span>8.43 MPH<span id="current-wind">Sunny</span></div>
-            <div class="current-weather-info"><span>Humidity: </span><span id="current-humidity">44%</span></div>
+            <div class="current-weather-info"><span id="current-temp"></span></div>
+            <div class="current-weather-info"><span id="current-wind"></span></div>
+            <div class="current-weather-info"><span id="current-humidity"></span></div>
           </div>
         </section>
         <section class="forecast">
