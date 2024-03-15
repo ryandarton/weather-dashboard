@@ -30,20 +30,22 @@ function fetchWeatherData(city) {
     .then((data) => {
       console.log(data);
       displayWeatherData(data);
-      // Store the city in local storage
+      // Store the city in local storage if it doesn't already exist
       const cityEntries = JSON.parse(localStorage.getItem('cityEntries')) || [];
-      cityEntries.push(city);
-      localStorage.setItem('cityEntries', JSON.stringify(cityEntries));
-      // Add an <li> element for the city in the history list
-      const historyList = document.getElementById('history-list');
-      const li = document.createElement('li');
-      li.classList.add('history-item', 'no-bullet');
-      const button = document.createElement('button');
-      button.classList.add('secondary');
-      button.id = city;
-      button.textContent = city;
-      li.appendChild(button);
-      historyList.appendChild(li);
+      if (!cityEntries.includes(city)) {
+        cityEntries.push(city);
+        localStorage.setItem('cityEntries', JSON.stringify(cityEntries));
+        // Add an <li> element for the city in the history list
+        const historyList = document.getElementById('history-list');
+        const li = document.createElement('li');
+        li.classList.add('history-item', 'no-bullet');
+        const button = document.createElement('button');
+        button.classList.add('secondary');
+        button.id = city;
+        button.textContent = city;
+        li.appendChild(button);
+        historyList.appendChild(li);
+      }
     })
     .catch((error) => {
       console.error(error);
