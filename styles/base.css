@@ -87,10 +87,14 @@ input[type='text'] {
 
 .body-wrapper {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .sidebar {
-  width: 25vw;
+  width: max-content;
   padding: 0.5rem;
 }
 
@@ -128,10 +132,14 @@ main {
 .forecast-wrapper {
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
   padding: 0.5rem 0;
 }
 
 .forecast-card {
+  margin: 0.5rem 0.5rem;
   background-color: var(--primary-color);
   color: var(--tertiary-color);
   padding: 0.5rem;
