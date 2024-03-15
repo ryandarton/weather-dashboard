@@ -2,7 +2,7 @@
 
 A useful tool to get quick access to the 5-day forecast in your favorite cities!
 
-TODO: Insert Screenshot here
+![Alt Text](./assets/weather-dashboard-screenshot.png)
 
 ## The Site
 
